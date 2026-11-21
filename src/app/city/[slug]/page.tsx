@@ -27,7 +27,7 @@ export async function generateStaticParams() {
     .from('destinations')
     .select('slug');
 
-  return (destinations ?? []).map((d) => ({
+  return (data as { slug: sreturn ((destinations ?? []) as { slug: string }[]).map((d) => ({tring }[]).map((dest) => ({
     slug: d.slug,
   }));
 }
