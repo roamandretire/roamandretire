@@ -8,7 +8,6 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables in .env.local');
 }
 
-// Database schema typing for strong type checking
 export interface Database {
   public: {
     Tables: {
@@ -16,8 +15,13 @@ export interface Database {
         Row: Destination;
         Insert: Destination;
         Update: Partial<Destination>;
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }
 
