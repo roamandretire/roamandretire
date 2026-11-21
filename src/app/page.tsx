@@ -1,112 +1,120 @@
+import { Suspense } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { Destination } from '@/types/destination';
+import InteractiveMatrix from '@/components/InteractiveMatrix';
 
-
-export default async function HomePage() {
-  const { data: destinations, error } = await supabase
+// Next.js Cache Components helper: caches database response
+async function getDestinations(): Promise<Destination[]> {
+  'use cache';
+  const { data, error } = await supabase
     .from('destinations')
     .select('*')
     .order('rank', { ascending: true });
 
   if (error) {
-    return (
-      <main className="p-8 max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">Database Connection Error</h1>
-        <pre className="bg-red-50 p-4 rounded text-sm text-red-800 border border-red-200">
-          {JSON.stringify(error, null, 2)}
-        </pre>
-      </main>
-    );
+    console.error('Supabase query error:', error);
+    return [];
   }
 
-  const items = (destinations ?? []) as Destination[];
-  const chiangMai = items.find((d) => d.slug === 'chiang-mai-thailand');
-  const guam = items.find((d) => d.slug === 'guam-usa-territory');
+  return (data ?? []) as Destination[];
+}
 
+// Fallback loader while data resolves
+function ExplorerSkeleton() {
   return (
-    <main className="p-8 max-w-5xl mx-auto space-y-6">
-      <div className="border-b pb-4">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-          Roam and Retire — Database Verification
-        </h1>
-        <p className="text-sm text-slate-600 mt-1">
-          Connected to Supabase. Total records retrieved:{' '}
-          <span className="font-semibold text-emerald-600">{items.length}</span> / 200
-        </p>
+    <div className="space-y-6 animate-pulse">
+      <div className="h-44 bg-slate-100 rounded-xl border border-slate-200" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="h-72 bg-slate-100 rounded-xl border border-slate-200" />
+        ))}
       </div>
+    </div>
+  );
+}
 
-      {/* Target Row Sanity Checks */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {chiangMai && (
-          <div className="border rounded-lg p-4 bg-slate-50 space-y-2">
-            <div className="flex justify-between items-center">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                Rank #{chiangMai.rank}
+async function ExplorerContainer() {
+  const destinations = await getDestinations();
+  return <InteractiveMatrix initialDestinations={destinations} />;
+}
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      {/* Top Navigation */}
+      <header className="border-b border-slate-200 bg-white sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <a href="/" className="flex items-center gap-2">
+              <span className="w-8 h-8 rounded-lg bg-slate-900 text-teal-400 font-black flex items-center justify-center text-sm">
+                R
               </span>
-              <span className="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium">
-                ${chiangMai.monthly_cost_usd}/mo
+              <span className="text-lg font-bold tracking-tight text-slate-900">
+                Roam <span className="text-teal-600">&</span> Retire
               </span>
-            </div>
-            <h2 className="text-lg font-bold text-slate-900">
-              {chiangMai.city_name}, {chiangMai.country}
-            </h2>
-            <p className="text-xs text-slate-600 italic">{chiangMai.why_retirees_pick_it}</p>
-            <div className="text-xs text-slate-700 space-y-1 pt-2 border-t border-slate-200">
-              <div>Healthcare: {chiangMai.healthcare_score}/100</div>
-              <div>Safety: {chiangMai.safety_score}/100</div>
-              <div>Canada Stay: {chiangMai.tourist_stay_days_ca} days ({chiangMai.stay_days_ca_num} num)</div>
-              <div>Neighborhood 1: {chiangMai.expat_neighborhood_1}</div>
-              <div className="text-amber-700 font-mono text-[11px] mt-1">{chiangMai.data_notes}</div>
-            </div>
+            </a>
           </div>
-        )}
 
-        {guam && (
-          <div className="border rounded-lg p-4 bg-slate-50 space-y-2">
-            <div className="flex justify-between items-center">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                Rank #{guam.rank}
-              </span>
-              <span className="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium">
-                ${guam.monthly_cost_usd}/mo
-              </span>
-            </div>
-            <h2 className="text-lg font-bold text-slate-900">
-              {guam.city_name}, {guam.country}
-            </h2>
-            <p className="text-xs text-slate-600 italic">{guam.why_retirees_pick_it}</p>
-            <div className="text-xs text-slate-700 space-y-1 pt-2 border-t border-slate-200">
-              <div>US Stay Text: {guam.tourist_stay_days_us}</div>
-              <div>
-                US Stay Num:{' '}
-                <span className="font-mono bg-slate-200 px-1 py-0.5 rounded">
-                  {guam.stay_days_us_num === null ? 'NULL (Unlimited)' : guam.stay_days_us_num}
-                </span>
-              </div>
-              <div className="text-amber-700 font-mono text-[11px] mt-1">{guam.data_notes}</div>
-            </div>
+          <div className="flex items-center gap-4 text-xs font-semibold">
+            <a
+              href="/compare/chiang-mai-vs-da-nang"
+              className="text-slate-600 hover:text-slate-900 hidden sm:inline-block"
+            >
+              Showdown: Chiang Mai vs Da Nang
+            </a>
+            <a
+              href="https://youtube.com/@RoamAndRetireTV"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-slate-900 hover:bg-slate-800 text-white px-3 py-1.5 rounded-lg transition-colors"
+            >
+              YouTube
+            </a>
           </div>
-        )}
-      </div>
-
-      {/* Ranks 1 to 5 Quick Check */}
-      <div className="border rounded-lg overflow-hidden">
-        <div className="bg-slate-100 px-4 py-2 border-b text-xs font-semibold text-slate-700 uppercase tracking-wider">
-          Top 5 Destinations (Sanity Order Check)
         </div>
-        <ul className="divide-y text-sm">
-          {items.slice(0, 5).map((d) => (
-            <li key={d.slug} className="px-4 py-2 flex justify-between items-center">
-              <div>
-                <span className="font-bold text-slate-500 mr-2">#{d.rank}</span>
-                <span className="font-medium text-slate-900">{d.city_name}</span>,{' '}
-                <span className="text-slate-600">{d.country}</span>
-              </div>
-              <div className="text-slate-700 font-mono">${d.monthly_cost_usd}/mo</div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+      </header>
+
+      {/* Hero Section */}
+      <section className="bg-white border-b border-slate-200 py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold">
+            <span>200 Verified Global Hubs</span>
+            <span className="text-teal-400">•</span>
+            <span>Data as of Nov 2026</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 max-w-3xl mx-auto leading-tight">
+            The Data-Driven Index for Slow Travel & Global Living
+          </h1>
+
+          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
+            Filter 200 international retirement and extended-stay destinations by monthly budget,
+            healthcare quality, safety scores, and verified passport stay limits.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Interactive Matrix Section */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Suspense fallback={<ExplorerSkeleton />}>
+          <ExplorerContainer />
+        </Suspense>
+      </main>
+
+      {/* Global Minimal Footer */}
+      <footer className="border-t border-slate-200 bg-white mt-16 py-8 text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            &copy; {new Date().getFullYear()} Roam and Retire. Personal research and relocation index.
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="/about" className="hover:text-slate-800">Scoring Methodology</a>
+            <a href="/privacy" className="hover:text-slate-800">Privacy Policy</a>
+            <a href="/terms" className="hover:text-slate-800">Terms of Use</a>
+            <a href="/disclosure" className="hover:text-slate-800">FTC Disclosure</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
