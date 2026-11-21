@@ -328,7 +328,7 @@ export default async function ComparePage({ params }: PageProps) {
       <footer className="border-t border-slate-200 bg-white mt-16 py-8 text-xs text-slate-500">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            &copy; {new Date().getFullYear()} Roam and Retire. Verified relocation data.
+            &copy; 2026 Roam and Retire. Verified relocation data.
           </div>
           <div className="flex items-center gap-4">
             <a href="/about" className="hover:text-slate-800">Scoring Methodology</a>
