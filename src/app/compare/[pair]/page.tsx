@@ -255,14 +255,14 @@ export default async function ComparePage({ params }: PageProps) {
                 <span className="font-bold text-slate-800">{d1.city_name}:</span>
                 <p className="text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-100">{d1.visa_ease}</p>
                 <div className="text-slate-500 pt-1">
-                  Passport Stays: Canada {d1.tourist_stay_days_ca}d &bull; USA {d1.tourist_stay_days_us}d
+                  Passport Stays: Canada {d1.tourist_stay_days_ca} &bull; USA {d1.tourist_stay_days_us}
                 </div>
               </div>
               <div className="space-y-1 pt-2 border-t border-slate-100">
                 <span className="font-bold text-slate-800">{d2.city_name}:</span>
                 <p className="text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-100">{d2.visa_ease}</p>
                 <div className="text-slate-500 pt-1">
-                  Passport Stays: Canada {d2.tourist_stay_days_ca}d &bull; USA {d2.tourist_stay_days_us}d
+                  Passport Stays: Canada {d2.tourist_stay_days_ca} &bull; USA {d2.tourist_stay_days_us}
                 </div>
               </div>
             </div>
