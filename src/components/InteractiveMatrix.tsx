@@ -228,6 +228,48 @@ export default function InteractiveMatrix({ initialDestinations }: Props) {
             </div>
           </div>
 
+          {/* Min Visa Friendliness Score */}
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs font-medium text-slate-700">
+              <span>Min Visa Friendliness</span>
+              <span className="font-bold text-teal-700">{minVisaScore}+</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="95"
+              step="5"
+              value={minVisaScore}
+              onChange={(e) => setMinVisaScore(Number(e.target.value))}
+              className="w-full accent-teal-600 h-1.5 bg-slate-200 rounded-lg cursor-pointer"
+            />
+            <div className="flex justify-between text-[10px] text-slate-400">
+              <span>Any</span>
+              <span>95+</span>
+            </div>
+          </div>
+
+          {/* Min English Proficiency */}
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs font-medium text-slate-700">
+              <span>Min English Proficiency</span>
+              <span className="font-bold text-teal-700">{minEnglishProficiency}+</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="95"
+              step="5"
+              value={minEnglishProficiency}
+              onChange={(e) => setMinEnglishProficiency(Number(e.target.value))}
+              className="w-full accent-teal-600 h-1.5 bg-slate-200 rounded-lg cursor-pointer"
+            />
+            <div className="flex justify-between text-[10px] text-slate-400">
+              <span>Any</span>
+              <span>95+</span>
+            </div>
+          </div>
+
           {/* Passport Stay Days Dropdown */}
           <div className="space-y-2">
             <div className="text-xs font-medium text-slate-700">Passport Tourist Stay</div>
@@ -258,7 +300,7 @@ export default function InteractiveMatrix({ initialDestinations }: Props) {
         {filteredDestinations.map((dest) => (
           <div
             key={dest.slug}
-            className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+            className="group relative bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
           >
             <div className="p-5 space-y-4">
               {/* Card Header */}
@@ -271,7 +313,7 @@ export default function InteractiveMatrix({ initialDestinations }: Props) {
                     <span className="text-xs font-medium text-slate-500">{dest.region}</span>
                   </div>
                   {/* Display UTF-8 city_name and country per Rule #3 */}
-                  <h3 className="text-lg font-bold text-slate-900 mt-1">{dest.city_name}</h3>
+                  <h3 className="text-lg font-bold text-slate-900 mt-1 group-hover:text-teal-800 group-hover:underline"><a href={`/city/${dest.slug}`} className="after:absolute after:inset-0">{dest.city_name}</a></h3>
                   <div className="text-xs font-medium text-slate-600">{dest.country}</div>
                 </div>
 
