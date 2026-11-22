@@ -31,6 +31,8 @@ export interface Destination {
   region: string;
   why_retirees_pick_it: string;
   monthly_cost_usd: number;
+  monthly_cost_low_usd: number | null;
+  monthly_cost_high_usd: number | null;
   cost_basis: string;
   numbeo_contributors: number | null;
   visa_ease: string;

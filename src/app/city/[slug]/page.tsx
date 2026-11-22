@@ -129,11 +129,11 @@ export default async function CityPage({ params }: PageProps) {
         <img
           src={heroImage.src}
           alt={`${dest.city_name}, ${dest.country}`}
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-45"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-900/60"
+          className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-slate-900/10"
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
@@ -162,13 +162,30 @@ export default async function CityPage({ params }: PageProps) {
               <div className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
                 Single Retiree / Mo
               </div>
-              <div className="text-3xl sm:text-4xl font-black text-teal-400 mt-1">
-                ${dest.monthly_cost_usd.toLocaleString()}
-              </div>
-              <div className="text-[11px] text-slate-300 mt-1">
-                USD / Month &bull; Basis: {dest.cost_basis}
-                {dest.numbeo_contributors ? ` (${dest.numbeo_contributors} contributors)` : ''}
-              </div>
+              {dest.monthly_cost_low_usd != null && dest.monthly_cost_high_usd != null ? (
+                <>
+                  <div className="text-2xl sm:text-3xl font-black text-teal-400 mt-1 whitespace-nowrap">
+                    ${dest.monthly_cost_low_usd.toLocaleString()} &ndash; ${dest.monthly_cost_high_usd.toLocaleString()}+
+                  </div>
+                  <div className="text-[11px] text-slate-300 mt-1">
+                    USD / Month &bull; Typical: ${dest.monthly_cost_usd.toLocaleString()}
+                  </div>
+                  <div className="text-[11px] text-slate-400">
+                    Range from researched neighbourhood rents &bull; Basis: {dest.cost_basis}
+                    {dest.numbeo_contributors ? ` (${dest.numbeo_contributors} contributors)` : ''}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="text-3xl sm:text-4xl font-black text-teal-400 mt-1">
+                    ${dest.monthly_cost_usd.toLocaleString()}
+                  </div>
+                  <div className="text-[11px] text-slate-300 mt-1">
+                    USD / Month &bull; Basis: {dest.cost_basis}
+                    {dest.numbeo_contributors ? ` (${dest.numbeo_contributors} contributors)` : ''}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -394,4 +411,3 @@ export default async function CityPage({ params }: PageProps) {
     </div>
   );
 }
-
