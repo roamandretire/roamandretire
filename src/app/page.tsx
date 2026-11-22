@@ -70,19 +70,25 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-white border-b border-slate-200 py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold">
+      <section className="relative overflow-hidden border-b border-slate-200 py-12 sm:py-16 min-h-[520px] sm:min-h-[600px] flex items-center">
+        <img
+          src="/images/hero-beach.webp"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-[60%_55%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/45 to-slate-950/70" />
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-white text-xs font-semibold">
             <span>200 Verified Global Hubs</span>
-            <span className="text-teal-400">•</span>
+            <span className="text-teal-300">•</span>
             <span>Data as of Nov 2026</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 max-w-3xl mx-auto leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white max-w-3xl mx-auto leading-tight">
             The Data-Driven Index for Slow Travel & Global Living
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-normal">
+          <p className="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto font-normal">
             Filter 200 international retirement and extended-stay destinations by monthly budget,
             healthcare quality, safety scores, and verified passport stay limits.
           </p>
