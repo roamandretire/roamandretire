@@ -229,9 +229,9 @@ export default async function CityPage({ params }: PageProps) {
               Planning long-term healthcare in {dest.city_name}? Compare global expat medical policies:
             </span>
             <a
-              href={`https://safetywing.com/nomad-insurance?subid=${dest.slug}-ipmi`}
+              href={`https://safetywing.com/nomad-insurance?referenceID=26642525&campaign=website-link&utm_campaign=website-link&utm_source=26642525&utm_medium=Ambassador&subid=${dest.slug}-ipmi`}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer sponsored"
               className="font-bold text-teal-700 hover:text-teal-900 whitespace-nowrap"
             >
               Check Expat Health Cover &rarr;
