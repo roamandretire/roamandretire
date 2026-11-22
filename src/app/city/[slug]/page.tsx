@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { supabase } from '@/lib/supabase';
 import type { Destination } from '@/types/destination';
 import { getDestinationHeroImage } from '@/lib/destination-media';
+import CityCostBreakdown from '@/components/CityCostBreakdown';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -90,10 +91,10 @@ export default async function CityPage({ params }: PageProps) {
 
   // Sparse slot rule: only mount cards for populated neighborhood columns
   const neighborhoods = [
-    dest.expat_neighborhood_1,
-    dest.expat_neighborhood_2,
-    dest.expat_neighborhood_3,
-  ].filter(Boolean);
+    { name: dest.expat_neighborhood_1, desc: dest.nbhd_1_desc },
+    { name: dest.expat_neighborhood_2, desc: dest.nbhd_2_desc },
+    { name: dest.expat_neighborhood_3, desc: dest.nbhd_3_desc },
+  ].filter((n): n is { name: string; desc: string | null } => Boolean(n.name));
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
@@ -226,6 +227,43 @@ export default async function CityPage({ params }: PageProps) {
           </div>
         </section>
 
+        {/* Top Expat Neighborhood Enclaves */}
+        <section className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+          <div className="border-b border-slate-100 pb-3">
+            <h2 className="text-xl font-bold text-slate-900">Top Expat Neighborhoods</h2>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Verified long-stay residential hubs with reliable internet, walkability, and amenities.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            {neighborhoods.map((nbhd, idx) => (
+              <div key={nbhd.name} className="border border-slate-200 rounded-lg p-4 bg-slate-50 space-y-2">
+                <div className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">
+                  Enclave #{idx + 1}
+                </div>
+                <h3 className="text-base font-bold text-slate-900">{nbhd.name}</h3>
+                {nbhd.desc && (
+                  <p className="text-xs text-slate-600 leading-relaxed">{nbhd.desc}</p>
+                )}
+                <div className="pt-2">
+                  <a
+                    href={`https://www.flatio.com/search?q=${encodeURIComponent(`${nbhd.name}, ${dest.city_name}`)}&subid=${dest.slug}-nbhd-${idx + 1}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-teal-700 hover:underline"
+                  >
+                    Check Monthly Rentals &rarr;
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Researched Cost Breakdown (renders only when populated) */}
+        <CityCostBreakdown dest={dest} />
+
         {/* Visa & Stay Limits + Seasonality Strip */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Visa & Stay Overview */}
@@ -303,42 +341,8 @@ export default async function CityPage({ params }: PageProps) {
               </div>
             </div>
 
-            <div className="text-[11px] text-slate-500">
-              Optimal travel window: schedule 30–90 day slow-travel stays during shoulder seasons to maximize rental discounts.
-            </div>
           </section>
         </div>
-
-        {/* Top Expat Neighborhood Enclaves */}
-        <section className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
-          <div className="border-b border-slate-100 pb-3">
-            <h2 className="text-xl font-bold text-slate-900">Top Expat Neighborhoods</h2>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Verified long-stay residential hubs with reliable internet, walkability, and amenities.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-            {neighborhoods.map((name, idx) => (
-              <div key={name} className="border border-slate-200 rounded-lg p-4 bg-slate-50 space-y-2">
-                <div className="text-[10px] font-bold text-teal-700 uppercase tracking-wider">
-                  Enclave #{idx + 1}
-                </div>
-                <h3 className="text-base font-bold text-slate-900">{name}</h3>
-                <div className="pt-2">
-                  <a
-                    href={`https://www.flatio.com/search?q=${encodeURIComponent(`${name}, ${dest.city_name}`)}&subid=${dest.slug}-nbhd-${idx + 1}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-teal-700 hover:underline"
-                  >
-                    Check Monthly Rentals &rarr;
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* YouTube Video Embed Slot (renders dynamically when populated) */}
         {dest.youtube_video_id ? (
@@ -390,3 +394,4 @@ export default async function CityPage({ params }: PageProps) {
     </div>
   );
 }
+
