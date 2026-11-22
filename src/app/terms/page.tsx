@@ -20,12 +20,7 @@ export default function TermsPage() {
       <header className="border-b border-slate-200 bg-white sticky top-0 z-30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-lg bg-slate-900 text-teal-400 font-black flex items-center justify-center text-sm">
-              R
-            </span>
-            <span className="text-lg font-bold tracking-tight text-slate-900">
-              Roam <span className="text-teal-600">&amp;</span> Retire
-            </span>
+            <img src="/images/logo.png" alt="Roam and Retire" className="h-12 w-auto" />
           </a>
 
           <a href="/" className="text-xs font-semibold text-slate-600 hover:text-slate-900">
