@@ -89,6 +89,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Trust Strip */}
+      <section className="bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-center">
+          <p className="text-sm text-slate-600"><span className="text-base font-black text-slate-900">200</span> destinations researched</p>
+          <p className="text-sm text-slate-600"><span className="text-base font-black text-slate-900">10-axis</span> cost &amp; livability scoring</p>
+          <p className="text-sm text-slate-600"><span className="text-base font-black text-slate-900">100% independent</span> — no sponsored ranks</p>
+        </div>
+      </section>
+
       {/* Main Interactive Matrix Section */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Suspense fallback={<ExplorerSkeleton />}>
