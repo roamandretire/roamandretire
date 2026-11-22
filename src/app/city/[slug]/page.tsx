@@ -276,6 +276,21 @@ export default async function CityPage({ params }: PageProps) {
         {/* Researched Cost Breakdown (renders only when populated) */}
         <CityCostBreakdown dest={dest} />
 
+        {/* Health insurance - budget separately (SafetyWing affiliate) */}
+        <section className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-3">
+          <h2 className="text-base font-bold text-slate-900">Health Insurance Isn&apos;t in These Numbers</h2>
+          <p className="text-sm leading-relaxed text-slate-700">
+            Our monthly costs exclude international health insurance — budget for it separately.
+            SafetyWing&apos;s Nomad Insurance is built for long stays abroad:{' '}
+            <a href="https://safetywing.com/nomad-insurance?referenceID=26642525&campaign=website-link&utm_campaign=website-link&utm_source=26642525&utm_medium=Ambassador" target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-teal-700 underline hover:text-teal-900">Nomad Insurance — travel medical</a>
+            {' · '}
+            <a href="https://explore.safetywing.com/nomad-insurance-complete?selectedPlan=NOMAD_INSURANCE_COMPLETE&referenceID=26642525&campaign=website-link&utm_campaign=website-link&utm_source=26642525&utm_medium=Ambassador" target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-teal-700 underline hover:text-teal-900">Nomad Insurance Complete — full health cover</a>
+          </p>
+          <p className="text-xs text-slate-500">
+            We may earn a commission if you buy through these links, at no extra cost to you. See our <a href="/disclosure" className="underline hover:text-slate-700">affiliate disclosure</a>.
+          </p>
+        </section>
+
         {/* Visa & Stay Limits + Seasonality Strip */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Visa & Stay Overview */}
@@ -376,12 +391,12 @@ export default async function CityPage({ params }: PageProps) {
             <p className="text-xs text-slate-500 max-w-md mx-auto">
               Our full on-the-ground cost and living analysis for {dest.city_name} is in production for{' '}
               <a
-                href="https://youtube.com/@RoamRetireTV"
+                href="https://youtube.com/@RoamAndRetireTV"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-teal-700 hover:underline"
               >
-                @RoamRetireTV
+                @RoamAndRetireTV
               </a>
               .
             </p>

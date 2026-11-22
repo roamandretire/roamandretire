@@ -84,7 +84,7 @@ export default function DisclosurePage() {
             <div className="border border-slate-200 rounded-lg p-4 bg-white space-y-1.5">
               <span className="font-bold text-slate-900 block">Expat &amp; Travel Health Insurance (IPMI)</span>
               <p className="text-slate-600">
-                Because headline living costs exclude medical insurance, we link to verified global providers (such as SafetyWing, Cigna Global, or Allianz Care) so readers can compare comprehensive medical and evacuation coverage.
+                Because headline living costs exclude medical insurance, we link to insurance built for long stays abroad. Our current partner in this category is SafetyWing (Nomad Insurance and Nomad Insurance Complete); if you buy through our links we may earn a commission at no extra cost to you. Other providers mentioned in our guides (such as Cigna Global or Allianz Care) are editorial mentions only, not affiliate partners, unless listed below.
               </p>
             </div>
 
@@ -116,6 +116,10 @@ export default function DisclosurePage() {
               </p>
             </div>
           </div>
+
+          <p>
+            <strong>Current affiliate partners (November 2026):</strong> SafetyWing — travel medical and long-term health insurance for nomads and long-stay travellers. This list is updated whenever a partnership is added or ends.
+          </p>
         </section>
 
         {/* Section 4: Reader Responsibility */}
