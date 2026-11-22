@@ -1,8 +1,29 @@
 // Curated list of slugs that have dedicated WebP hero images in:
 // public/images/destinations/[slug].webp
 const DEDICATED_DESTINATION_SLUGS = new Set<string>([
+  'chania-crete-greece',
+  'boquete-panama',
+  'lagos-algarve-portugal',
   'chiang-mai-thailand',
+  'lake-chapala-ajijic-mexico',
+  'george-town-penang-malaysia',
+  'valencia-spain',
+  'panama-city-panama',
+  'lisbon-portugal',
+  'medellin-colombia',
+  'merida-mexico',
+  'cuenca-ecuador',
   'da-nang-vietnam',
+  'dumaguete-philippines',
+  'porto-portugal',
+  'malaga-spain',
+  'athens-greece',
+  'san-miguel-de-allende-mexico',
+  'tavira-algarve-portugal',
+  'alicante-spain',
+  'puerto-vallarta-mexico',
+  'bangkok-thailand',
+  'makati-manila-philippines',
 ]);
 
 // Map database `region` values to fallback WebP assets in:
