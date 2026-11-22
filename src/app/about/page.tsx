@@ -77,7 +77,7 @@ export default function AboutPage() {
 
         {/* Section 3: 10-Axis Metric Scoring */}
         <section className="space-y-4 text-sm leading-relaxed text-slate-700">
-          <h2 className="text-xl font-bold text-slate-900">3. The 10-Score Livability Axis (0–100 Scale)</h2>
+          <h2 className="text-xl font-bold text-slate-900">3. The 10 Livability Categories (0–100 Scale)</h2>
           <p>
             Every city receives normalized 0–100 scores across ten independent vectors:
           </p>

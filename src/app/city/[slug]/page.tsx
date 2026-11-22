@@ -102,7 +102,12 @@ export default async function CityPage({ params }: PageProps) {
       <header className="border-b border-slate-200 bg-white sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
-            <img src="/images/logo.png" alt="Roam and Retire" className="h-12 w-auto" />
+            <span className="w-8 h-8 rounded-lg bg-slate-900 text-teal-400 font-black flex items-center justify-center text-sm">
+              R
+            </span>
+            <span className="text-lg font-bold tracking-tight text-slate-900">
+              Roam <span className="text-teal-600">&amp;</span> Retire
+            </span>
           </a>
 
           <div className="flex items-center gap-4 text-xs font-semibold">
@@ -199,7 +204,7 @@ export default async function CityPage({ params }: PageProps) {
         <section className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
           <div className="border-b border-slate-100 pb-4 flex justify-between items-center">
             <div>
-              <h2 className="text-xl font-bold text-slate-900">10-Axis Livability Scorecard</h2>
+              <h2 className="text-xl font-bold text-slate-900">10-Category Livability Scorecard</h2>
               <p className="text-xs text-slate-500 mt-0.5">
                 Evaluated against the Roam and Retire 200-City Relocation Index (0 to 100 benchmark).
               </p>

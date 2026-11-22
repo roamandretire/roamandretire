@@ -108,7 +108,7 @@ export default function TermsPage() {
         <section className="space-y-3 text-sm leading-relaxed text-slate-700">
           <h2 className="text-xl font-bold text-slate-900">5. Intellectual Property</h2>
           <p>
-            All original website design, compilation structure, 10-axis scoring models, editorial summaries, and comparative layout code on Roam and Retire are the property of Roam and Retire and are protected by applicable copyright, database, and intellectual property laws. You may reference or cite our findings for personal, non-commercial purposes with appropriate attribution and a direct link back to the respective destination dossier. Bulk scraping, unauthorized republishing, or commercial syndication of our database without written consent is strictly prohibited.
+            All original website design, compilation structure, 10-category scoring models, editorial summaries, and comparative layout code on Roam and Retire are the property of Roam and Retire and are protected by applicable copyright, database, and intellectual property laws. You may reference or cite our findings for personal, non-commercial purposes with appropriate attribution and a direct link back to the respective destination dossier. Bulk scraping, unauthorized republishing, or commercial syndication of our database without written consent is strictly prohibited.
           </p>
         </section>
 
