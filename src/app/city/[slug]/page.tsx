@@ -376,12 +376,12 @@ export default async function CityPage({ params }: PageProps) {
             <p className="text-xs text-slate-500 max-w-md mx-auto">
               Our full on-the-ground cost and living analysis for {dest.city_name} is in production for{' '}
               <a
-                href="https://youtube.com/@RoamAndRetireTV"
+                href="https://youtube.com/@RoamRetireTV"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-teal-700 hover:underline"
               >
-                @RoamAndRetireTV
+                @RoamRetireTV
               </a>
               .
             </p>

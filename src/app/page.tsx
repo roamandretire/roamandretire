@@ -58,7 +58,7 @@ export default function HomePage() {
               Showdown: Chiang Mai vs Da Nang
             </a>
             <a
-              href="https://youtube.com/@RoamAndRetireTV"
+              href="https://youtube.com/@RoamRetireTV"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-slate-900 hover:bg-slate-800 text-white px-3 py-1.5 rounded-lg transition-colors"
