@@ -277,15 +277,28 @@ export default async function CityPage({ params }: PageProps) {
         <CityCostBreakdown dest={dest} />
 
         {/* Health insurance - budget separately (SafetyWing affiliate) */}
-        <section className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-3">
-          <h2 className="text-base font-bold text-slate-900">Health Insurance Isn&apos;t in These Numbers</h2>
-          <p className="text-sm leading-relaxed text-slate-700">
-            Our monthly costs exclude international health insurance — budget for it separately.
-            SafetyWing&apos;s Nomad Insurance is built for long stays abroad:{' '}
-            <a href="https://safetywing.com/nomad-insurance?referenceID=26642525&campaign=website-link&utm_campaign=website-link&utm_source=26642525&utm_medium=Ambassador" target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-teal-700 underline hover:text-teal-900">Nomad Insurance — travel medical</a>
-            {' · '}
-            <a href="https://explore.safetywing.com/nomad-insurance-complete?selectedPlan=NOMAD_INSURANCE_COMPLETE&referenceID=26642525&campaign=website-link&utm_campaign=website-link&utm_source=26642525&utm_medium=Ambassador" target="_blank" rel="noopener noreferrer sponsored" className="font-semibold text-teal-700 underline hover:text-teal-900">Nomad Insurance Complete — full health cover</a>
-          </p>
+        <section className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-700">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+            <div className="space-y-1">
+              <h2 className="text-base font-bold text-slate-900">Health Insurance Isn&apos;t in These Numbers</h2>
+              <p className="text-sm leading-relaxed text-slate-700">
+                Our monthly costs exclude international health insurance — budget for it separately. SafetyWing&apos;s Nomad Insurance is built for long stays abroad.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href="https://safetywing.com/nomad-insurance?referenceID=26642525&campaign=website-link&utm_campaign=website-link&utm_source=26642525&utm_medium=Ambassador" target="_blank" rel="noopener noreferrer sponsored" className="flex-1 rounded-lg bg-teal-700 px-4 py-3 text-center text-sm font-bold text-white hover:bg-teal-800">
+              Nomad Insurance — Travel Medical &rarr;
+            </a>
+            <a href="https://explore.safetywing.com/nomad-insurance-complete?selectedPlan=NOMAD_INSURANCE_COMPLETE&referenceID=26642525&campaign=website-link&utm_campaign=website-link&utm_source=26642525&utm_medium=Ambassador" target="_blank" rel="noopener noreferrer sponsored" className="flex-1 rounded-lg border border-teal-700 px-4 py-3 text-center text-sm font-bold text-teal-800 hover:bg-teal-50">
+              Nomad Insurance Complete — Full Health Cover &rarr;
+            </a>
+          </div>
           <p className="text-xs text-slate-500">
             We may earn a commission if you buy through these links, at no extra cost to you. See our <a href="/disclosure" className="underline hover:text-slate-700">affiliate disclosure</a>.
           </p>
